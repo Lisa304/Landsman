@@ -1,5 +1,5 @@
 # 智能客服對話系統(Github版本)
-[TOC]
+
 ## 寫規格書
 >[excel](https://docs.google.com/spreadsheets/d/11xuymKi_N9tnzYNH91TL-1xPYTQeXWQXa8ySI2whLpY/edit#gid=0)
 
