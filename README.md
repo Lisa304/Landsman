@@ -76,7 +76,7 @@
         -  model=yentinglin/Taiwan-LLM-7B-v2.1-chat
         -  volume=$PWD/data
             -  echo $volume 可以看到剛剛設了什麼值給 volume
-        -  token=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
+        -  token=your_token
         -  docker run --gpus all --shm-size 1g -e HUGGING_FACE_HUB_TOKEN=$token -p 8080:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:1.2 --model-id $model
 ### 包裝request 
 - [LangChain framework](https://python.langchain.com/docs/get_started/introduction)
@@ -87,5 +87,22 @@
     - chain.run("有關購買不動產稅金，我需要了解哪些事情？")
 - 其中LLAMA2和text-generation 使用 post 來跟 LangChain 互通
     - [url](https://huggingface.co/docs/text-generation-inference/quicktour)
-- 問答（question answering） : 第二個重大的LangChain 使用用例。僅利用這些文件中的資訊來建立答案，回答特定文件中的問題。
-    - [url](https://www.langchain.asia/use_cases/question_answering)
+
+### 紀錄回答
+```python=
+import json
+def recordQA(qu, answer):
+    dictionary ={}
+    dictionary["question"] = qu
+    dictionary["answer"] = answer
+
+    with open("record.json", "r") as infile:
+        tmp = json.load(infile)
+        tmp.append(dictionary)
+        print(tmp)
+
+    with open("record.json", "w") as outfile:
+        json_object = json.dumps(tmp, indent=4)
+        outfile.write(json_object)
+```
+- 現在確定中文字都有成功儲存，只是在vscode開啟是utf-8編碼的
